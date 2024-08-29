@@ -78,3 +78,91 @@ header{
     bottom: 250px;
     left: 60px;
 }
+.mainheading{
+    text-align: center;
+    font-weight: normal;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.CategoryButtons{
+    text-align: center;
+    display: flex;
+   justify-content: center;
+   gap: 60px;
+   margin-top: 60px;
+   margin-bottom: 40px;
+}
+.CategoryButtons button{
+    padding: 8px;
+    background-color: white;
+    border: 1px solid #555555 ;
+    border-radius: 5px;
+}
+.CategoryButtons button:hover{
+    background-color: black;
+    color: white;
+}
+/* ProductCard */
+
+.product-card{
+    height: 500px;
+    width:300px;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+}
+
+#HomeProducts{
+
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.product-card img{
+    width: 250px;
+    height: 200px;
+}
+.product-card .desc{
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+:root {
+    --char-count: 14; 
+}
+.product-card .title {
+    width: calc(var(--char-count) * 1ch);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: x; /* Change this number to the desired number of lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.product-card hr{
+    max-width: 100%;
+    height: auto;
+}
+.buttons{
+    display: flex;
+   justify-content: space-around;
+}
+.card-button{
+    background-color: black;
+    color: white;
+    width: fit-content;
+    border-radius: 5px;
+    padding: 5px;
+
+}
+.card-button:hover{
+    background-color: white;
+    color: black;
+}
