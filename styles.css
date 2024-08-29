@@ -1,0 +1,51 @@
+/* header styling */
+*{
+    padding: 0px;
+
+}
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+.header{
+    
+    background-color: whitesmoke;
+    display: flex;
+    justify-content:space-evenly;
+
+}
+.nav{
+    position: relative;
+    top: 7px;
+}
+.nav ul{
+    display: flex;
+    gap: 10px;
+}
+.header .nav li{
+    list-style: none;
+    display: flex;
+
+}
+
+.headericons{
+    display: flex;
+    gap: 20px;
+    position: relative;
+    top:18px ;
+}
+.headericon{
+    height: 20px;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+}
+.htext h2:hover,.headericon:hover{
+    background-color: black;
+    color: white;
+}
+.header .nav li:hover{
+    color: #aaa5a5;
+
+}
