@@ -169,7 +169,7 @@ header{
 }
 
 
-#Home, #Product ,#SelectedProduct{
+#Home, #Product ,#SelectedProduct,#CartPage{
     display: none;
 }
 

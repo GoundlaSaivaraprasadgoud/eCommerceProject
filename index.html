@@ -36,7 +36,8 @@
                 
                 <div class="headericon">
                     <i class="fa-solid fa-cart-shopping" ></i>
-                    <span class="headericon-desc" id="cart">Cart</span>
+
+                    <a id="cart"></a>
                 </div>
             </div>
 
@@ -86,11 +87,19 @@
 
         <div id="Cartpage" class="page">
             <div id="emptycart">
+                <h1>Cart</h1>
+                <h2>Your Cart is Empty</h2>
             </div>
-            <div id="cart-container"></div>
-    
+            <div id="cart-container">
+                <div id="cartdesc">
+                    <h3>Order Summary</h3>
+                    <p id="quantity"></p>
+                    <p id="price"></p>
+                </div>
+            </div>
         </div>
     </main>
+
 
 
     <script src="./app.js"></script>
