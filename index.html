@@ -15,8 +15,8 @@
             
             <div class="nav">
                 <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Products</a></li>
+                    <li  class="PageButtons" data-target="Home">Home</li>
+                    <li class="PageButtons" data-target="Product">Products</li>
                     <li>About</li>
                     <li>Contact</li>
                 </ul>
@@ -44,7 +44,7 @@
 
     </header>
     <main>
-        <div id="Home" class="Homepage">
+        <div id="Home" class="page">
             <div class="mainimg">
                 <img src="./main.png.jpg">
                 
@@ -66,6 +66,15 @@
             <div id="HomeProducts"></div>
         </div>
         <div id="Product" class="page">
+            <h1 class="mainheading">Latest Products</h1>
+            <div class="CategoryButtons">
+                <button id="all">All</button>
+                <button  id="men's clothing">Men's Clothing</button>
+                <button id="women's clothing">Women's Clothing</button>
+                <button id="jewelery">jewelery</button>
+                <button id="electronics">Electronics</button>
+    
+            </div>
             <div id="ProductContainer"></div>
         </div>
     </main>
