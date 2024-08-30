@@ -2,6 +2,8 @@ const HomeContainer=document.getElementById('HomeProducts');
 const productsContainer=document.getElementById('ProductContainer');
 const HomePage=document.getElementById('Home');
 const ProductPage=document.getElementById('Product');
+const SelectedProductPage=document.getElementById('SelectedProduct');
+const SelectedProductDetails=document.getElementById('SelectedProductDetails');
 
 let allproducts=[];
 
@@ -24,7 +26,19 @@ fetch('https://fakestoreapi.com/products')
                 filterProducts(e.target.id);
             });
             });
+
+        HomeContainer.addEventListener('click',(e)=>{
+            if(e.target.classList.contains('details-button')){
+             DetailsHandling(e.target);
+            } else if(e.target.classList.contains('addtocart-button')){
+             AddtoCartHandling(e.target);
+            }
+        });
+
+        
     });
+
+ 
 
     navigation('Home');
 
@@ -52,8 +66,8 @@ fetch('https://fakestoreapi.com/products')
         <p>$${product.price}</p>
         <hr>
         <div class="buttons">
-        <button class="addtocart-button" onclick="addToCart(${product.id})"> Add to Cart</button>
-        <button class="details-button" onclick="Details(${product.id})">Details</button>
+        <button class="addtocart-button" data-id='${product.id}'> Add to Cart</button>
+        <button class="details-button" data-id='${product.id}'>Details</button>
         </div>
         
 
@@ -65,14 +79,15 @@ fetch('https://fakestoreapi.com/products')
     function navigation(target) {
         HomePage.style.display='none';
         ProductPage.style.display='none';
-
+        SelectedProductPage.style.display='none';
 
         if(target==='Home'){
             HomePage.style.display='block';
         }else if(target ==='Product'){
             ProductPage.style.display='block';
-
-    }
+        }else if(target === 'SelectedProduct'){
+            SelectedProductPage.style.display='block';
+        }
     };
     function filterProducts(category){
         
@@ -87,3 +102,28 @@ fetch('https://fakestoreapi.com/products')
         }
 
     };
+
+    function  DetailsHandling(button){
+        const selectedproduct=allproducts.find(product=>product.id==button.dataset.id)
+        displayselectedproduct(selectedproduct);
+        navigation('SelectedProduct');
+     };
+
+     function  displayselectedproduct(product){
+        SelectedProductDetails.innerHTML=`
+
+        <img src="${product.image}">
+        <div class="details-img-desc">
+        <h2 class="category">${product.category}</h2>
+        <h2 class="title">${product.title}</h2>
+        <p class="rating">${product.rating.rate}<i class="fa-solid fa-star"></i></p>
+        <p class="price">$${product.price}</p>
+        <p class="desc">${product.description}</p>
+            <div class="buttons">
+            <button class="addtocart-button" data-id='${product.id}'> Add to Cart</button>
+            <button class="gotoCart-button" data-id='${product.id}' >GotoCart</button>
+            </div>
+        </div>
+        `;
+        
+     };

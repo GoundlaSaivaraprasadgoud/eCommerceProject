@@ -114,7 +114,7 @@ header{
     text-align: center;
 }
 
-#HomeProducts{
+#HomeProducts,#ProductContainer,#SelectedProduct{
 
     width: 90%;
     margin: auto;
@@ -166,4 +166,9 @@ header{
 .card-button:hover{
     background-color: white;
     color: black;
+}
+
+
+#Home, #Product ,#SelectedProduct{
+    display: none;
 }
