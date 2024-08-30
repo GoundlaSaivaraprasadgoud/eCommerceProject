@@ -1,5 +1,5 @@
 const HomeContainer=document.getElementById('HomeProducts');
-
+const productsContainer=document.getElementById('ProductContainer');
 
 let allproducts=[];
 
@@ -9,6 +9,7 @@ fetch('https://fakestoreapi.com/products')
     .then((data)=>{
         allproducts=data;
        displayproductcards(allproducts,HomeContainer);
+       displayproductcards(allproducts,productsContainer); 
     })
     .catch((error) => {
         console.error('Error fetching products:', error);
