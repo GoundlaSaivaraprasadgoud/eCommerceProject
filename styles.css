@@ -172,3 +172,16 @@ header{
 #Home, #Product ,#SelectedProduct{
     display: none;
 }
+
+#SelectedProductDetails img{
+    width: 300px;
+ 
+ }
+ #SelectedProductDetails{
+     margin: auto;
+     width: 90%;
+     margin-top: 100px;
+     display: flex;
+     gap: 200px;
+   
+ }

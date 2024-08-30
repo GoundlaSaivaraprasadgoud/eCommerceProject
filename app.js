@@ -34,6 +34,13 @@ fetch('https://fakestoreapi.com/products')
              AddtoCartHandling(e.target);
             }
         });
+        productsContainer.addEventListener('click',(e)=>{
+            if(e.target.classList.contains('details-button')){
+             DetailsHandling(e.target);
+            } else if(e.target.classList.contains('addtocart-button')){
+             AddtoCartHandling(e.target);
+            }
+         });
 
         
     });
