@@ -53,6 +53,17 @@ header{
     color: #aaa5a5;
 }
 
+
+
+/*  Footer*/
+.footer{
+    text-align: center;
+}
+.footer a{
+  
+    color: black;
+}
+
 /* main image */
 
 .mainimg{
@@ -185,3 +196,23 @@ header{
      gap: 200px;
    
  }
+
+ #emptycart{
+    margin-top: 100px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+#Cartpage .cartcard img{
+    width: 100px;
+}
+#Cartpage .cartcard{
+    margin-top: 100px;
+    display: flex;
+}
+#Cartpage #cartdesc{
+    margin-top: 100px;
+}
+#cartblock{
+    display: flex;
+    gap: 100px;
+}

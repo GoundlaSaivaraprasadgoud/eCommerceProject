@@ -60,6 +60,15 @@ document.addEventListener('DOMContentLoaded', () => {
                  AddtoCartHandling(e.target);
                 }
              });
+
+             //  adding event listner for details page
+            SelectedProductDetails.addEventListener('click',(e)=>{
+                 if(e.target.classList.contains('addtocart-button')){
+                AddtoCartHandling(e.target);
+                }else if (e.target.classList.contains('cart')){
+                navigation('CartPage');
+                }
+        });
     
     
         
@@ -154,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="desc">${product.description}</p>
                 <div class="buttons">
                 <button class="addtocart-button" data-id='${product.id}'> Add to Cart</button>
-                <button class="gotoCart-button" data-id='${product.id}' >GotoCart</button>
+                 <button class="cart" data-id='${product.id}' >GotoCart</button>
                 </div>
             </div>
             `;
