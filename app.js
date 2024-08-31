@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const CartContainer=document.getElementById('cart-container');
     const emptycart=document.getElementById('emptycart');
     const Carticon=document.getElementById('cart');
+    // const totalQuantityElement=docume.getElementById('quantity');
+    const finalAmountElement=document.getElementById('FinalAmount');
+    const totalPriceElement = document.getElementById('TotalPrice');
     const cartblock=document.getElementById('cartblock');
     
     
@@ -45,15 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             Carticon.addEventListener('click', (e) => {
                 navigation('CartPage');
             });
-            
-            CartContainer.addEventListener('click',(e)=>{
-                if(e.target.classList.contains('fa-minus')){
-                    quantitychange(e.target,'fa-minus')
-             }else if(e.target.classList.contains('fa-plus')){
-                     quantitychange(e.target,'fa-plus')
-             }
-
-            });
+    
             HomeContainer.addEventListener('click',(e)=>{
                if(e.target.classList.contains('details-button')){
                 DetailsHandling(e.target);
@@ -69,17 +64,25 @@ document.addEventListener('DOMContentLoaded', () => {
                  AddtoCartHandling(e.target);
                 }
              });
-
-             //  adding event listner for details page
-            SelectedProductDetails.addEventListener('click',(e)=>{
-                 if(e.target.classList.contains('addtocart-button')){
-                AddtoCartHandling(e.target);
-                }else if (e.target.classList.contains('cart')){
-                navigation('CartPage');
-                }
+             CartContainer.addEventListener('click',(e)=>{
+                if(e.target.classList.contains('fa-minus')){
+                    quantitychange(e.target,'fa-minus')
+             }else if(e.target.classList.contains('fa-plus')){
+                     quantitychange(e.target,'fa-plus')
+             }
         });
-
-
+    
+    
+    
+            //  adding event listner for details page
+            SelectedProductDetails.addEventListener('click',(e)=>{
+                if(e.target.classList.contains('addtocart-button')){
+                    AddtoCartHandling(e.target);
+                   }else if (e.target.classList.contains('cart')){
+                    navigation('CartPage');
+                   }
+            });
+    
     
     
         
@@ -174,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="desc">${product.description}</p>
                 <div class="buttons">
                 <button class="addtocart-button" data-id='${product.id}'> Add to Cart</button>
-                 <button class="cart" data-id='${product.id}' >GotoCart</button>
+                <button class="cart" data-id='${product.id}' >GotoCart</button>
                 </div>
             </div>
             `;
@@ -189,10 +192,13 @@ document.addEventListener('DOMContentLoaded', () => {
             cartsection.classList.add('Cart-Card')
             cartsection.innerHTML=`
             <img src="${product.image}">
-            <h3>${product.title}</h3>
-            <i data-target="${product.id}" class="fa-solid fa-minus"></i>
-             <p >${product.quantity} × $${product.price}</p>
-            <i data-target="${product.id}" class="fa-solid fa-plus"></i>
+            <h2 >${product.title}</h2>
+            <div class="incdec">
+             <i id="minus" data-target="${product.id}" class="fa-solid fa-minus"></i>
+             <p class="squa" >${product.quantity}</p>
+             <i data-target="${product.id}" class="fa-solid fa-plus"></i>
+             </div>
+             <p class="proqua">${product.quantity} × $${product.price}</p>
             `;
             return cartsection;
          };
@@ -206,14 +212,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
             }else{
                 emptycart.style.display='none';
-                CartContainer.style.display='block'
+                cartblock.style.display='flex';
     
                 CartContainer.innerHTML=" ";
                 cart.forEach(product=>{
                 const card=createcartcard(product);
                 CartContainer.appendChild(card);
-            });
-            };
+                });
+            };    CartCount();
+                  updateCartDetails()
+        
+            
     
          };
     
@@ -235,36 +244,51 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('cart', JSON.stringify(cart));
             displaycartproducts();
             CartCount();
+           
             
          };
-
-         function CartCount(){
+    
+        function CartCount(){
             document.getElementById('cart').innerHTML=` Cart (${cart.length})`;
             Quantityofcart=cart.reduce((add,item)=>{
                 return add+item.quantity;
             },0);
             document.getElementById('quantity').textContent=`Products (${Quantityofcart})`;
+            
+    
          };
-
+    
          function quantitychange(button,operation){
-            const product= cart.find(product=>product.id==button.dataset.target);
-            const productindex=cart.findIndex(product=>product.id==button.dataset.target);
-            if(operation=='fa-minus'){
-     
-             if(product.quantity>1){
-                 product.quantity--;
-             }else {
-                 cart.splice(productindex,1);
-             };
-                 
-     
-            }else if(operation=='fa-plus'){
-                 product.quantity++;
+           const product= cart.find(product=>product.id==button.dataset.target);
+           const productindex=cart.findIndex(product=>product.id==button.dataset.target);
+           if(operation=='fa-minus'){
+    
+            if(product.quantity>1){
+                product.quantity--;
+            }else {
+                cart.splice(productindex,1);
             };
-     
-            localStorage.setItem('cart', JSON.stringify(cart));
-            displaycartproducts();
-          };
+                
+    
+           }else if(operation=='fa-plus'){
+                product.quantity++;
+           };
+    
+           localStorage.setItem('cart', JSON.stringify(cart));
+           displaycartproducts();
+           updateCartDetails()
+       
+           
+         };    
+         
+         function updateCartDetails() {
+    
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(0);
+            totalPriceElement.textContent = `$${totalPrice}`;
+    
+            const FinalPrice=Number(totalPrice)+30;
+            finalAmountElement.textContent=`$${FinalPrice}`;
+        };
     
     
     });

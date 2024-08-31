@@ -214,8 +214,42 @@ header{
 
 }
 #cart-container .Cart-Card h2{
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: normal;
+    margin-top: 20px;
 }
+#Cartpage .Cart-Card .proqua{
+    margin-top: 80px;
+    margin-right: 20px;
+}
+
+.Cart-Card .incdec{
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+#quantityNprice,#shipping,#TotalAmount{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+#cartdesc{
+    height: max-content;
+}
+#cartdesc button{
+    
+    width: 90%;
+    margin:0 0 20px 20px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+
+}
+
 #Cartpage #cartdesc{
     margin-top: 100px;
     width: 30%;
@@ -235,5 +269,6 @@ header{
 }
 #cart-container{
     display: flex;
+    flex-direction: column;
     gap: 20px;
 }
