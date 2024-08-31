@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const CartContainer=document.getElementById('cart-container');
     const emptycart=document.getElementById('emptycart');
     const Carticon=document.getElementById('cart');
+    const cartblock=document.getElementById('cartblock');
     
     
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -44,7 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
             Carticon.addEventListener('click', (e) => {
                 navigation('CartPage');
             });
-    
+            
+            CartContainer.addEventListener('click',(e)=>{
+                if(e.target.classList.contains('fa-minus')){
+                    quantitychange(e.target,'fa-minus')
+             }else if(e.target.classList.contains('fa-plus')){
+                     quantitychange(e.target,'fa-plus')
+             }
+
+            });
             HomeContainer.addEventListener('click',(e)=>{
                if(e.target.classList.contains('details-button')){
                 DetailsHandling(e.target);
@@ -69,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 navigation('CartPage');
                 }
         });
+
+
     
     
         
@@ -175,11 +186,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
          function createcartcard(product){
             const cartsection=document.createElement('div');
-            cartsection.classList.add('cartcard')
+            cartsection.classList.add('Cart-Card')
             cartsection.innerHTML=`
             <img src="${product.image}">
-            <h2 >${product.title}</h2>
-            <p >${product.quantity} × $${product.price}</p>
+            <h3>${product.title}</h3>
+            <i data-target="${product.id}" class="fa-solid fa-minus"></i>
+             <p >${product.quantity} × $${product.price}</p>
+            <i data-target="${product.id}" class="fa-solid fa-plus"></i>
             `;
             return cartsection;
          };
@@ -188,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
          function displaycartproducts(){
             
             if(cart.length===0){
-                CartContainer.style.display='none';
+                cartblock.style.display='none';
                 emptycart.style.display="block";
     
             }else{
@@ -232,6 +245,26 @@ document.addEventListener('DOMContentLoaded', () => {
             },0);
             document.getElementById('quantity').textContent=`Products (${Quantityofcart})`;
          };
+
+         function quantitychange(button,operation){
+            const product= cart.find(product=>product.id==button.dataset.target);
+            const productindex=cart.findIndex(product=>product.id==button.dataset.target);
+            if(operation=='fa-minus'){
+     
+             if(product.quantity>1){
+                 product.quantity--;
+             }else {
+                 cart.splice(productindex,1);
+             };
+                 
+     
+            }else if(operation=='fa-plus'){
+                 product.quantity++;
+            };
+     
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displaycartproducts();
+          };
     
     
     });
