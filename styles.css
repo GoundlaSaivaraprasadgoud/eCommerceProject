@@ -157,6 +157,7 @@ header{
     line-clamp: x; 
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-left: 60px;
 }
 .product-card hr{
     max-width: 100%;
