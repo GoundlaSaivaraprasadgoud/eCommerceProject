@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const CartContainer=document.getElementById('cart-container');
     const emptycart=document.getElementById('emptycart');
     const Carticon=document.getElementById('cart');
-    // const totalQuantityElement=docume.getElementById('quantity');
     const finalAmountElement=document.getElementById('FinalAmount');
     const totalPriceElement = document.getElementById('TotalPrice');
     const cartblock=document.getElementById('cartblock');
+    const gotohome=document.getElementById('gotohome');
     
     
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -48,6 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
             Carticon.addEventListener('click', (e) => {
                 navigation('CartPage');
             });
+            gotohome.addEventListener('click', (e) => {
+                navigation('HomePage');
+            });
     
             HomeContainer.addEventListener('click',(e)=>{
                if(e.target.classList.contains('details-button')){
@@ -70,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
              }else if(e.target.classList.contains('fa-plus')){
                      quantitychange(e.target,'fa-plus')
              }
+
+
         });
     
     
